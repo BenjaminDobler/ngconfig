@@ -16,12 +16,15 @@ export function activate(context: vscode.ExtensionContext) {
         const folderPath = contextItem.fsPath;
         const rel = relative(vscode.workspace.rootPath || '', folderPath);
         const partialKey = getTarget(rel);
-
-        const uri = vscode.Uri.file(partialKey + '-angular.json').with({
-            scheme: 'angularjson',
-            query: rel,
-        });
-        const doc = await vscode.workspace.openTextDocument(uri);
-        await vscode.window.showTextDocument(doc, { preview: false });
+        if (partialKey) {
+            const uri = vscode.Uri.file(partialKey + '-angular.json').with({
+                scheme: 'angularjson',
+                query: rel,
+            });
+            const doc = await vscode.workspace.openTextDocument(uri);
+            await vscode.window.showTextDocument(doc, { preview: false });
+        } else {
+            vscode.window.showWarningMessage('No angular project found for directory: ' + rel);
+        }
     });
 }

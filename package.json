@@ -1,9 +1,9 @@
 {
 	"name": "ng-config",
-	"displayName": "NG Config allows to open partial angular.json configs",
+	"displayName": "NGConfig",
 	"description": "Open virtual partial angular.json files",
-	"version": "0.0.1",
-	"publisher": "Benjamin Dobler",
+	"version": "0.0.2",
+	"publisher": "richapps",
 	"icon": "logo.png",
 	"repository": {
 		"url": "https://github.com/BenjaminDobler/ngconfig.git",
@@ -23,7 +23,7 @@
 		"commands": [
 			{
 				"command": "ngconfig.openProjectPartial",
-				"title": "Angular Config"
+				"title": "Open project config"
 			}
 		],
 		"menus": {
