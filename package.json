@@ -4,6 +4,7 @@
 	"description": "Open virtual partial angular.json files",
 	"version": "0.0.1",
 	"publisher": "Benjamin Dobler",
+	"icon": "logo.png",
 	"repository": {
 		"url": "https://github.com/BenjaminDobler/ngconfig.git",
 		"type": "git"
