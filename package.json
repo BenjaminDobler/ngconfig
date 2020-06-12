@@ -2,7 +2,7 @@
 	"name": "ng-config",
 	"displayName": "NGConfig",
 	"description": "Open virtual partial angular.json files",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"publisher": "richapps",
 	"icon": "logo.png",
 	"repository": {

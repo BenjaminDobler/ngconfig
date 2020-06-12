@@ -17,12 +17,10 @@ export class AngularJsonFS implements vscode.FileSystemProvider {
 
     readFile(uri: vscode.Uri): Uint8Array {
         const targetPath = uri.query;
-
-        const partial = getPartial(targetPath);
+        const partial = getPartial(targetPath, uri.fsPath);
 
         if (partial) {
             const file = Buffer.from(JSON.stringify(partial, null, 4));
-            console.log(file);
             return file;
         }
         throw vscode.FileSystemError.FileNotFound();
@@ -30,12 +28,12 @@ export class AngularJsonFS implements vscode.FileSystemProvider {
 
     writeFile(uri: vscode.Uri, content: Uint8Array, options: { create: boolean; overwrite: boolean }): void {
         const targetPath = uri.query;
-        const partialKey = getTarget(targetPath);
-        const angularJSON = getAngularJSON();
+        const partialKey = getTarget(targetPath, uri.fsPath);
+        const angularJSON = getAngularJSON(uri.fsPath);
 
         if (partialKey) {
             angularJSON.projects[partialKey] = JSON.parse(content.toString());
-            writeAngularJSON(angularJSON);
+            writeAngularJSON(angularJSON, uri.fsPath);
         }
     }
 
