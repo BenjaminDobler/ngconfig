@@ -20,10 +20,10 @@ export function activate(context: vscode.ExtensionContext) {
             const angularJsonPath = join(workspaceFolder.uri.fsPath, 'angular.json');
             const partialKey = getTarget(rel, angularJsonPath);
             if (partialKey) {
-                const uri = vscode.Uri.file(partialKey + '-angular.json').with({
+                const uri = vscode.Uri.file(partialKey + ' : angular.json').with({
                     scheme: 'angularjson',
                     query: rel,
-                    path: angularJsonPath
+                    fragment: angularJsonPath
                 });
                 const doc = await vscode.workspace.openTextDocument(uri);
                 await vscode.window.showTextDocument(doc, { preview: false });

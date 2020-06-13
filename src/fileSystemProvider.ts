@@ -17,7 +17,7 @@ export class AngularJsonFS implements vscode.FileSystemProvider {
 
     readFile(uri: vscode.Uri): Uint8Array {
         const targetPath = uri.query;
-        const partial = getPartial(targetPath, uri.fsPath);
+        const partial = getPartial(targetPath, uri.fragment);
 
         if (partial) {
             const file = Buffer.from(JSON.stringify(partial, null, 4));
@@ -28,12 +28,12 @@ export class AngularJsonFS implements vscode.FileSystemProvider {
 
     writeFile(uri: vscode.Uri, content: Uint8Array, options: { create: boolean; overwrite: boolean }): void {
         const targetPath = uri.query;
-        const partialKey = getTarget(targetPath, uri.fsPath);
-        const angularJSON = getAngularJSON(uri.fsPath);
+        const partialKey = getTarget(targetPath, uri.fragment);
+        const angularJSON = getAngularJSON(uri.fragment);
 
         if (partialKey) {
             angularJSON.projects[partialKey] = JSON.parse(content.toString());
-            writeAngularJSON(angularJSON, uri.fsPath);
+            writeAngularJSON(angularJSON, uri.fragment);
         }
     }
 
